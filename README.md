@@ -1,7 +1,9 @@
 # IRR-integration
 ## 0. to install and configure environment
 clone the pub one with submoudel
-```git clone  --recurse-submodule git@gitlab.com:certh...```
+```
+git clone  --recurse-submodule git@gitlab.com:certh...
+```
 check the farther and submoule is in right branch, if not check out
 ```
 git submodule init
@@ -19,11 +21,17 @@ docker compose up -d
 docker exec -it --user robetarme_user ros_noetic_t5.3_irr_control_development bash
 ```
 in docker
-```catkin build -DCMAKE_BUILD_TYPE=Debug```
+```
+catkin build -DCMAKE_BUILD_TYPE=Debug
+```
 first time will have problem about wp5-robotic-arms
-```sudo apt-get remove gcc g++```
-then in ```~/catkin_ws/src/wp5-robotic-arms/libs/ik-geo-cpp/rust-wrapper```
-```cargo build```
+```
+sudo apt-get remove gcc g++
+```
+then in ```~/catkin_ws/src/wp5-robotic-arms/libs/ik-geo-cpp/rust-wrapper```:
+```
+cargo build
+```
 
 then after catkin build again, all function can be run as follow
 
@@ -32,7 +40,6 @@ in folder ```/robetarme-irr-common/t5.3-irr-control/docker/main_pkg``` run this
 ```
 # just run docker up
 docker compose up -d
-
 # Accessing docker in interactive mode from a shell
 docker exec -it --user robetarme_user ros_noetic_t5.3_irr_control_development bash
 ```
@@ -54,12 +61,18 @@ catkin build -DCMAKE_BUILD_TYPE=Debug
 #source /opt/ros/noetic/setup.bash
 ```
 run this to conect and control robot
-```sh run_docker_planner.sh```
+```
+sh run_docker_planner.sh
+```
 click play in simulation on robot side
 run this to plan and move robot
-```sh run_docker_task_welding.sh```
+```
+sh run_docker_task_welding.sh
+```
 run this one to active laser
-```sh run_docker_laser_service.sh  ```
+```
+sh run_docker_laser_service.sh 
+```
 to acitvate the controller, need run
 ```
 # source /opt/ros/noetic/setup.bash
@@ -69,5 +82,7 @@ rosservice call /ur5/wp5_task_node/execution/enable "{}" # for the ur5 robot usa
 
 ## 4 Notice:
 switch between real robot and simulation, change this line in wp5_mam_planner_node.launch
-```<arg name="simu" doc="Simulation or real robot : [ON, OFF]" default="ON" />```
+```
+<arg name="simu" doc="Simulation or real robot : [ON, OFF]" default="ON" />
+```
 if want to use real vision feedback, in ```mam_task.launch```, change the ```toy_waypoint``` to ```false```
